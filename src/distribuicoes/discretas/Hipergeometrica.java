@@ -1,9 +1,8 @@
 package distribuicoes.discretas;
 
 import auxiliares.Auxiliares;
-import distribuicoes.Distribuicoes;
 
-public class Hipergeometrica implements Distribuicoes {
+public class Hipergeometrica extends Discreta {
     private int A;
     private int B;
     private int n;
@@ -38,24 +37,16 @@ public class Hipergeometrica implements Distribuicoes {
         this.n = n;
     }
 
-    public double FP(double x) {
-        return (double) ((Auxiliares.comb(A, (int) x) * Auxiliares.comb(B, n - (int) x)) / Auxiliares.comb(A+B, n));
+    public double FP(int x) {
+        return (double) ((Auxiliares.comb(A, x) * Auxiliares.comb(B, n - x)) / Auxiliares.comb(A+B, n));
     }
-    public double FDA(double x, double y) {
-        if(y < x) return -1;
-        double result = 0;
-        for (int i = (int) x; i <= y; i++){
-            result += ((double) Auxiliares.comb(A, i) * Auxiliares.comb(B, n - i));
-        }
-        return result / Auxiliares.comb(A+B, n);
-    }
+
     public double EX() {
         return n * ((double) A/(A+B));
     }
+
     public double VX() {
         return n * ((double) A/(A+B)) * ((double) (A+B-n)/(A+B-1)) * (1.0 - (double) A/(A+B));
     }
-    public double DesvPad() {
-        return Math.pow(this.VX(), 0.5);
-    }
+
 }

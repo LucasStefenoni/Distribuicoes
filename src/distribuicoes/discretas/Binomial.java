@@ -1,8 +1,7 @@
 package distribuicoes.discretas;
 import auxiliares.Auxiliares;
-import distribuicoes.Distribuicoes;
 
-public class Binomial implements Distribuicoes {
+public class Binomial extends Discreta {
     private int n;
     private double p;
 
@@ -26,17 +25,8 @@ public class Binomial implements Distribuicoes {
         return this.p;
     }
 
-    public double FP(double x) {
-        return Auxiliares.comb(n, (int) x) * Math.pow(p, x) * Math.pow((1-p), (n-x));
-    }
-
-    public double FDA(double x, double y) {
-        if(y < x) return -1;
-        double result = 0;
-        for (int i = (int) x; i <= y; i ++) {
-            result += Auxiliares.comb(n, i) * Math.pow(p, i) * Math.pow((1-p), (n-i));
-        }
-        return result;
+    public double FP(int x) {
+        return Auxiliares.comb(n, x) * Math.pow(p, x) * Math.pow((1-p), (n-x));
     }
 
     public double EX() {
@@ -47,7 +37,4 @@ public class Binomial implements Distribuicoes {
         return n*p*(1-p);
     }
 
-    public double DesvPad() {
-        return Math.pow(this.VX(), 0.5);
-    }
 }

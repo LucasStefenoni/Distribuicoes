@@ -1,8 +1,6 @@
 package distribuicoes.discretas;
 
-import distribuicoes.Distribuicoes;
-
-public class BinomialNegativa implements Distribuicoes {
+public abstract class BinomialNegativa extends Discreta {
     protected int x;
     protected int r;
     protected double p;
@@ -28,14 +26,6 @@ public class BinomialNegativa implements Distribuicoes {
         this.p = p;
     }
 
-    public double FP(double x) {
-        return 0;
-    }
-
-    public double FDA(double x, double y) {
-        return 0;
-    }
-
     public double EX() {
         return (r*(1-p)) / p;
     }
@@ -44,7 +34,4 @@ public class BinomialNegativa implements Distribuicoes {
         return (r*(1-p)) / (p*p);
     }
 
-    public double DesvPad() {
-        return Math.pow(this.VX(), 0.5);
-    }
 }

@@ -1,10 +1,16 @@
 package distribuicoes;
 
-public interface Distribuicoes {
+public abstract class Distribuicoes implements DistribuicoesInterface {
 
-    public double FP(double x);
-    public double FDA(double x, double y);
-    public double EX();
-    public double VX();
-    public double DesvPad();
+    public abstract double FP(int x);
+
+    public abstract double FDA(int x, int y);
+
+    public abstract double EX();
+
+    public abstract double VX();
+
+    public double DesvPad() {
+        return Math.sqrt(this.VX());
+    }
 }

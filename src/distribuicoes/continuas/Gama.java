@@ -1,9 +1,8 @@
 package distribuicoes.continuas;
 
 import auxiliares.Auxiliares;
-import distribuicoes.Distribuicoes;
 
-public class Gama implements Distribuicoes {
+public class Gama extends Continuas {
     private double alpha;
     private double beta;
 
@@ -32,25 +31,12 @@ public class Gama implements Distribuicoes {
         return (Math.pow(beta, alpha)/ Auxiliares.fGama(alpha)) * Math.pow(x, alpha-1) * Math.exp(-x*beta);
     }
 
-    public double FDA(double x, double y) {
-        if (y < x) {
-            double aux;
-            aux = x;
-            x = y;
-            y = aux;
-        };
-        return Auxiliares.integral(t -> this.FP(t), x, y);
-    }
-
     public double EX() {
-        return (double) alpha/beta;
+        return alpha/beta;
     }
 
     public double VX() {
-        return  (double) alpha/(beta*beta);
+        return alpha/(beta*beta);
     }
 
-    public double DesvPad() {
-        return Math.pow(this.VX(), 0.5);
-    }
 }

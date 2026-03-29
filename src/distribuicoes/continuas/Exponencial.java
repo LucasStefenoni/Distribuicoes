@@ -1,13 +1,12 @@
 package distribuicoes.continuas;
 
-import distribuicoes.Distribuicoes;
+public class Exponencial extends Continuas {
 
-public class Exponencial implements Distribuicoes {
+    private double lambda;
+
     public Exponencial(double lambda) {
         this.lambda = lambda;
     }
-
-    private double lambda;
 
     public double getLambda() {
         return lambda;
@@ -21,7 +20,8 @@ public class Exponencial implements Distribuicoes {
         return lambda * Math.exp(-lambda*x);
     }
 
-    public double FDA(double x, double y) {
+    @Override
+    public double FDA(int x, int y) {
         if(x < 0) return -1;
         return 1 - Math.exp(-lambda*x);
     }
@@ -32,9 +32,5 @@ public class Exponencial implements Distribuicoes {
 
     public double VX() {
         return 1/(lambda*lambda);
-    }
-
-    public double DesvPad() {
-        return Math.sqrt(this.VX());
     }
 }

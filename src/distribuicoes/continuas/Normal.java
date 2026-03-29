@@ -1,9 +1,6 @@
 package distribuicoes.continuas;
 
-import auxiliares.Auxiliares;
-import distribuicoes.Distribuicoes;
-
-public class Normal implements Distribuicoes {
+public class Normal extends Continuas {
     private double mi;
     private double delta;
 
@@ -13,7 +10,7 @@ public class Normal implements Distribuicoes {
     }
 
     public double FP(double x) {
-        double expoente = -0.5 * Math.pow((x - mi) / delta, 2);
+        double expoente = -0.5 * Math.pow(this.Z(x), 2);
         double denominador = delta * Math.sqrt(2 * Math.PI);
         return Math.exp(expoente) / denominador;
     }
@@ -22,15 +19,8 @@ public class Normal implements Distribuicoes {
         return (x - mi) / delta;
     }
 
-    public double FDA(double x, double y) {
-        return Auxiliares.integral(t -> this.FP(t), x, y);
-    }
-
     public double EX() { return mi; }
 
     public double VX() { return delta * delta; }
 
-    public double DesvPad() {
-        return this.delta;
-    }
 }
